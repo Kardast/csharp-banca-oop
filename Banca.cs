@@ -6,6 +6,21 @@
 //un insieme di clienti (una lista)
 //un insieme di prestiti concessi ai clienti (una lista)
 
+//FUNZIONALITà
+//Per la banca deve essere possibile:
+//aggiungere, modificare e ricercare un cliente.
+//aggiungere un prestito.
+//effettuare delle ricerche sui prestiti concessi ad un cliente dato il codice fiscale
+//sapere, dato il codice fiscale di un cliente, l’ammontare totale dei prestiti concessi.
+//sapere, dato il codice fiscale di un cliente, quante rate rimangono da pagare alla data odierna.
+//Per i clienti e per i prestiti si vuole stampare un prospetto riassuntivo con tutti i dati che li caratterizzano in un formato di tipo stringa a piacere.
+
+//p.s: per la modifica utente, non complichiamoci la vita, facciamo una interazione semplice tipo:
+//vengono chiesti all’utente tutti i campi del cliente
+//se viene premuto invio senza dati significa che il campo specifico non verrà modificato
+//se invece viene scritto un valore allora andremo a modificare il campo con il nuovo valore
+//ATTENZIONE: dato che abbiamo strutturato la ricerca utente in una funzione separata, la return ci permette di ragionare con i riferimenti? se non dovesse funzionare come dovremmo fare?
+
 public class Banca
 {
     public string Nome { get; set; }
@@ -16,6 +31,76 @@ public class Banca
     {
         Nome = nome;
         Clienti = new List<Cliente>();
-        Prestiti = new < Prestiti > ();
+        Prestiti = new List<Prestito>();
+    }
+
+    public bool AggiungiCliente(string nome, string cognome, string codiceFiscale, int stipendio)
+    {
+
+        if (
+            nome == null || nome == "" ||
+            cognome == null || cognome == "" ||
+            codiceFiscale == null || codiceFiscale == "" ||
+            stipendio < 0
+            )
+        {
+            return false;
+        }
+
+        Cliente esistente = RicercaCliente(codiceFiscale);
+
+        //se il cliente esiste l'istanza sarà diversa dal null
+        if (esistente != null)
+            return false;
+
+        Cliente cliente = new Cliente(nome, cognome, codiceFiscale, stipendio);
+        Clienti.Add(cliente);
+
+        return true;
+    }
+
+    public void StampaListaClienti()
+    {
+        foreach (Cliente cliente in Clienti)
+        {
+            Console.WriteLine("---");
+            Console.WriteLine(cliente.Nome);
+            Console.WriteLine(cliente.CodiceFiscale);
+        }
+    }
+
+    public Cliente RicercaCliente(string codiceFiscale)
+    {
+
+        foreach (Cliente cliente in Clienti)
+        {
+            if (cliente.CodiceFiscale == codiceFiscale)
+                return cliente;
+        }
+
+        return null;
+    }
+
+    public void ModificaCliente()
+    {
+        Console.WriteLine("Inserisci il codice fiscale dell'utente che vuoi modificare");
+        string userInput = Console.ReadLine();
+        foreach (Cliente cliente in Clienti)
+        {
+            if(cliente.CodiceFiscale == userInput)
+            {
+                Console.WriteLine("Inserisci in ordine i dati da modificare (nome, cognome, cod fiscale, stipendio");
+                string inputNome = Console.ReadLine();
+                string inputCognome = Console.ReadLine();
+                string inputCodFiscale = Console.ReadLine();
+                int inputStipendio = Convert.ToInt32(Console.ReadLine());
+
+                cliente.Nome = inputNome;
+                cliente.Cognome = inputCognome;
+                cliente.CodiceFiscale = inputCodFiscale;
+                cliente.Stipendio = inputStipendio;
+            }
+        }
+        StampaListaClienti();
     }
 }

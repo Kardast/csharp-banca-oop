@@ -12,22 +12,21 @@ Console.WriteLine("Hello, World!");
 //Consegna:
 //Sviluppare un’applicazione orientata agli oggetti per gestire i prestiti che una banca concede ai propri clienti.
 
-//FUNZIONALITà
-//Per la banca deve essere possibile:
-//aggiungere, modificare e ricercare un cliente.
-//aggiungere un prestito.
-//effettuare delle ricerche sui prestiti concessi ad un cliente dato il codice fiscale
-//sapere, dato il codice fiscale di un cliente, l’ammontare totale dei prestiti concessi.
-//sapere, dato il codice fiscale di un cliente, quante rate rimangono da pagare alla data odierna.
-//Per i clienti e per i prestiti si vuole stampare un prospetto riassuntivo con tutti i dati che li caratterizzano in un formato di tipo stringa a piacere.
 //Bonus:
 //visualizzare per ogni cliente, la situazione dei suoi prestiti in formato tabellare.
 
-//p.s: per la modifica utente, non complichiamoci la vita, facciamo una interazione semplice tipo:
-//vengono chiesti all’utente tutti i campi del cliente
-//se viene premuto invio senza dati significa che il campo specifico non verrà modificato
-//se invece viene scritto un valore allora andremo a modificare il campo con il nuovo valore
-//ATTENZIONE: dato che abbiamo strutturato la ricerca utente in una funzione separata, la return ci permette di ragionare con i riferimenti? se non dovesse funzionare come dovremmo fare?
-
 //snippet per data di oggi
 //var dateNow = DateOnly.FromDateTime(DateTime.Now);
+
+Banca fineco = new Banca("Fineco");
+fineco.AggiungiCliente("sandro", "ficini", "prova", 500);
+fineco.AggiungiCliente("federica", "elia", "fdrela45677", 1500);
+fineco.AggiungiCliente("pippo", "ippo", "ppppp3457", 500);
+fineco.AggiungiCliente("chicco", "pepe", "cccpp4859", 800);
+//copia che non viene stampata grazie al controllo sui doppioni
+fineco.AggiungiCliente("sandro", "ficini", "fcnsdr9327", 500);
+
+
+
+fineco.StampaListaClienti();
+fineco.ModificaCliente();
