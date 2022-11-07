@@ -115,17 +115,41 @@ public class Banca
     }
 
     //Aggiungi prestito
-    //public bool AggiungiPrestito(int ammontare, int valoreRata, DateOnly inizio, DateOnly fine, Cliente instestatario)
-    //{
-    //    if (
-    //        ammontare == null ||
-    //        valoreRata == null ||
-    //        inizio == null || 
-    //        fine == null ||
-    //        instestatario == null
-    //        )
-    //    {
-    //        return false;
-    //    }
-    //}
+    public bool AggiungiPrestito(int ammontare, int valoreRata, DateOnly inizio, DateOnly fine, string codiceFiscale)
+    {
+        Cliente cliente = RicercaCliente(codiceFiscale);
+        if (cliente == null)
+            return false;
+        Prestito mioPrestito = new Prestito(ammontare, valoreRata, inizio, fine, cliente);
+        Prestiti.Add(mioPrestito);
+        return true;
+    }
+
+    //Ricerca prestito
+    public Prestito RicercaPrestito(string codiceFiscale)
+    {
+        Cliente cliente = RicercaCliente(codiceFiscale);
+        foreach (Prestito prestito in Prestiti)
+        {
+            if (cliente.CodiceFiscale == codiceFiscale)
+                return prestito;
+        }
+
+        return null;
+    }
+
+    //Stampa prestiti
+    public void StampaListaPrestiti()
+    {
+        foreach (Prestito prestito in Prestiti)
+        {
+            Console.WriteLine("------------");
+            Console.WriteLine("id prestito: " + prestito.ID);
+            Console.WriteLine("Ammontare prestito: " + prestito.Ammontare);
+            Console.WriteLine("ValoreRata prestito: " + prestito.ValoreRata);
+            Console.WriteLine("Inizio prestito: " + prestito.Inizio);
+            Console.WriteLine("Fine prestito: " + prestito.Fine);
+            Console.WriteLine("Intestatario prestito: " + prestito.Intestatario.Cognome);
+        }
+    }
 }
