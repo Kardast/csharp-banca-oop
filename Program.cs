@@ -53,6 +53,7 @@ switch (action)
         int inputStipendio = Convert.ToInt32(Console.ReadLine());
         fineco.ModificaCliente(userInput, inputNome, inputCognome, inputCodFiscale, inputStipendio);
         break;
+
     case 2:
         //Cerca cliente
         Console.WriteLine("Inserisci il codice fiscale dell'utente che vuoi cercare");
@@ -60,6 +61,18 @@ switch (action)
         Cliente cercaCliente = fineco.RicercaCliente(userInputRicerca);
         if (cercaCliente != null)
             Console.WriteLine("nome: " + cercaCliente.Nome + ", stipendio: " + cercaCliente.Stipendio);
+        break;
+
+    case 3:
+        //Aggiungi un prestito
+        Console.WriteLine("Inserisci il codice fiscale dell'utente che vuole il prestito");
+        string userInputPrestito = Console.ReadLine();
+        Console.WriteLine("Inserisci in ordine i dati dal prestito (ammontare prestito, valore rata, inizio prestito, fine prestito, intestatario");
+        var dateNow = DateOnly.FromDateTime(DateTime.Now);
+        int ammontare = Convert.ToInt32(Console.ReadLine());
+        int valoreRata = Convert.ToInt32(Console.ReadLine());
+        string intestatario = Console.ReadLine();
+        fineco.AggiungiPrestito(ammontare, valoreRata, dateNow, fine, intestatario);
         break;
 }
 

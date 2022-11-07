@@ -12,20 +12,16 @@
 public class Prestito
 {
     //attributi
-    public int ID { get; set; }
-    public int Ammontare { get; set; }
-    public int ValoreRata { get; set; }
-    public DateOnly Inizio { get; set; }
-    public DateOnly Fine { get; set; }
-    public Cliente Intestatario { get; set; }
-
-    //costruttori
+    public static int ultimoIdInserito = 0;
     private int ammontarePrestito;
 
+    //costruttori
+
     //prestito in partenza dalla data specificata
-    public Prestito(int iD, int ammontare, int valoreRata, DateOnly inizio, DateOnly fine, Cliente intestatario)
+    public Prestito(int ammontare, int valoreRata, DateOnly inizio, DateOnly fine, Cliente intestatario)
     {
-        ID = iD;
+        ultimoIdInserito += 1;
+        ID = ultimoIdInserito;
         Ammontare = ammontare;
         ValoreRata = valoreRata;
         Inizio = inizio;
@@ -34,9 +30,10 @@ public class Prestito
     }
 
     //un prestito in data di oggi
-    public Prestito(int iD, int ammontare, int valoreRata, DateOnly fine, Cliente intestatario)
+    public Prestito(int ammontare, int valoreRata, DateOnly fine, Cliente intestatario)
     {
-        ID = iD;
+        ultimoIdInserito += 1;
+        ID = ultimoIdInserito;
         Ammontare = ammontare;
         ValoreRata = valoreRata;
         //data di oggi
@@ -44,4 +41,12 @@ public class Prestito
         Fine = fine;
         Intestatario = intestatario;
     }
+
+    //proprietà 
+    public int ID { get; set; }
+    public int Ammontare { get; set; }
+    public int ValoreRata { get; set; }
+    public DateOnly Inizio { get; set; }
+    public DateOnly Fine { get; set; }
+    public Cliente Intestatario { get; set; }
 }

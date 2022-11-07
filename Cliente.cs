@@ -8,12 +8,6 @@
 //stipendio
 public class Cliente
 {
-    //attributi
-    public string Nome { get; set; }
-    public string Cognome { get; set; }
-    public string CodiceFiscale { get; set; }
-    public int Stipendio { get; set; }
-
     //qui non serve perchè è già in banca e anche in Prestito c'è la relazione con il cliente
     //public List<Prestito> Prestiti { get; set; }
 
@@ -25,4 +19,10 @@ public class Cliente
         CodiceFiscale = codiceFiscale;
         Stipendio = stipendio;
     }
+
+    //proprietà
+    public string Nome { get; set; }
+    public string Cognome { get; set; }
+    public string CodiceFiscale { get; set; }
+    public int Stipendio { get; set; }
 }

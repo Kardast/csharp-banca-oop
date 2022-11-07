@@ -8,7 +8,7 @@
 
 //FUNZIONALITà
 //Per la banca deve essere possibile:
-//aggiungere, modificare e ricercare un cliente.
+//aggiungere, modificare e ricercare un cliente. OK
 //aggiungere un prestito.
 //effettuare delle ricerche sui prestiti concessi ad un cliente dato il codice fiscale
 //sapere, dato il codice fiscale di un cliente, l’ammontare totale dei prestiti concessi.
@@ -23,10 +23,12 @@
 
 public class Banca
 {
+    //proprietà
     public string Nome { get; set; }
     List<Cliente> Clienti { get; set; }
     List<Prestito> Prestiti { get; set; }
 
+    //costruttore
     public Banca(string nome)
     {
         Nome = nome;
@@ -111,4 +113,19 @@ public class Banca
         }
         StampaListaClienti();
     }
+
+    //Aggiungi prestito
+    //public bool AggiungiPrestito(int ammontare, int valoreRata, DateOnly inizio, DateOnly fine, Cliente instestatario)
+    //{
+    //    if (
+    //        ammontare == null ||
+    //        valoreRata == null ||
+    //        inizio == null || 
+    //        fine == null ||
+    //        instestatario == null
+    //        )
+    //    {
+    //        return false;
+    //    }
+    //}
 }
