@@ -22,7 +22,6 @@ Console.WriteLine("Hello, World!");
 //if (cliente.Stipendio / 2 < ammontare / (fineMod.Subtract(inizioMod).Days / 30))
 //    return false;
 
-
 Banca fineco = new Banca("Fineco");
 fineco.AggiungiCliente("sandro", "ficini", "prova", 500);
 fineco.AggiungiCliente("federica", "elia", "fdrela45677", 1500);
@@ -31,15 +30,39 @@ fineco.AggiungiCliente("chicco", "pepe", "cccpp4859", 800);
 //copia che non viene stampata grazie al controllo sui doppioni
 fineco.AggiungiCliente("sandro", "ficini", "fcnsdr9327", 500);
 
+Console.WriteLine("Seleziona l'azione");
+Console.WriteLine("0: Lista clienti");
+Console.WriteLine("1: Modifica utente");
+Console.WriteLine("2: Cerca cliente");
+int action = Convert.ToInt32(Console.ReadLine());
+switch (action)
+{
+    case 0:
+        //Lista clienti
+        fineco.StampaListaClienti();
+        break;
+
+    case 1:
+        //Modifica utente
+        Console.WriteLine("Inserisci il codice fiscale dell'utente che vuoi modificare");
+        string userInput = Console.ReadLine();
+        Console.WriteLine("Inserisci in ordine i dati da modificare (nome, cognome, cod fiscale, stipendio");
+        string inputNome = Console.ReadLine();
+        string inputCognome = Console.ReadLine();
+        string inputCodFiscale = Console.ReadLine();
+        int inputStipendio = Convert.ToInt32(Console.ReadLine());
+        fineco.ModificaCliente(userInput, inputNome, inputCognome, inputCodFiscale, inputStipendio);
+        break;
+    case 2:
+        //Cerca cliente
+        Console.WriteLine("Inserisci il codice fiscale dell'utente che vuoi cercare");
+        string userInputRicerca = Console.ReadLine();
+        Cliente cercaCliente = fineco.RicercaCliente(userInputRicerca);
+        if (cercaCliente != null)
+            Console.WriteLine("nome: " + cercaCliente.Nome + ", stipendio: " + cercaCliente.Stipendio);
+        break;
+}
 
 
-fineco.StampaListaClienti();
 
-Console.WriteLine("Inserisci il codice fiscale dell'utente che vuoi modificare");
-string userInput = Console.ReadLine();
-Console.WriteLine("Inserisci in ordine i dati da modificare (nome, cognome, cod fiscale, stipendio");
-string inputNome = Console.ReadLine();
-string inputCognome = Console.ReadLine();
-string inputCodFiscale = Console.ReadLine();
-int inputStipendio = Convert.ToInt32(Console.ReadLine());
-fineco.ModificaCliente(userInput, inputNome, inputCognome, inputCodFiscale, inputStipendio);
+

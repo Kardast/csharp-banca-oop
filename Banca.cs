@@ -34,6 +34,7 @@ public class Banca
         Prestiti = new List<Prestito>();
     }
 
+    //Aggiungi clienti
     public bool AggiungiCliente(string nome, string cognome, string codiceFiscale, int stipendio)
     {
 
@@ -59,6 +60,7 @@ public class Banca
         return true;
     }
 
+    //Stampa clienti
     public void StampaListaClienti()
     {
         foreach (Cliente cliente in Clienti)
@@ -69,6 +71,7 @@ public class Banca
         }
     }
 
+    //Ricerca clienti
     public Cliente RicercaCliente(string codiceFiscale)
     {
 
@@ -81,6 +84,7 @@ public class Banca
         return null;
     }
 
+    //Modifica clienti
     public void ModificaCliente(string userInput, string inputNome, string inputCognome, string inputCodFiscale, int inputStipendio)
     {
         foreach (Cliente cliente in Clienti)
@@ -107,12 +111,4 @@ public class Banca
         }
         StampaListaClienti();
     }
-
-    //public void FiltroCliente()
-    //{
-    //    Console.WriteLine("Inserisci il codice fiscale dell'utente da ricercare");
-    //    string inputRicercaUtente = Console.ReadLine();
-    //    RicercaCliente(inputRicercaUtente);
-    //    Console.WriteLine(
-    //}
 }
