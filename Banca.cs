@@ -81,26 +81,38 @@ public class Banca
         return null;
     }
 
-    public void ModificaCliente()
+    public void ModificaCliente(string userInput, string inputNome, string inputCognome, string inputCodFiscale, int inputStipendio)
     {
-        Console.WriteLine("Inserisci il codice fiscale dell'utente che vuoi modificare");
-        string userInput = Console.ReadLine();
         foreach (Cliente cliente in Clienti)
         {
             if(cliente.CodiceFiscale == userInput)
             {
-                Console.WriteLine("Inserisci in ordine i dati da modificare (nome, cognome, cod fiscale, stipendio");
-                string inputNome = Console.ReadLine();
-                string inputCognome = Console.ReadLine();
-                string inputCodFiscale = Console.ReadLine();
-                int inputStipendio = Convert.ToInt32(Console.ReadLine());
-
-                cliente.Nome = inputNome;
-                cliente.Cognome = inputCognome;
-                cliente.CodiceFiscale = inputCodFiscale;
-                cliente.Stipendio = inputStipendio;
+                if (inputNome != null)
+                {
+                    cliente.Nome = inputNome;
+                }
+                if (inputCognome != null)
+                {
+                    cliente.Cognome = inputCognome;
+                }
+                if (inputCodFiscale != null)
+                {
+                    cliente.CodiceFiscale = inputCodFiscale;
+                }
+                if (inputStipendio != null)
+                {
+                    cliente.Stipendio = inputStipendio;
+                }
             }
         }
         StampaListaClienti();
     }
+
+    //public void FiltroCliente()
+    //{
+    //    Console.WriteLine("Inserisci il codice fiscale dell'utente da ricercare");
+    //    string inputRicercaUtente = Console.ReadLine();
+    //    RicercaCliente(inputRicercaUtente);
+    //    Console.WriteLine(
+    //}
 }

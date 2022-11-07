@@ -17,6 +17,11 @@ Console.WriteLine("Hello, World!");
 
 //snippet per data di oggi
 //var dateNow = DateOnly.FromDateTime(DateTime.Now);
+//DateTime inizioMod = inizio.ToDateTime(TimeOnly.Parse("10:00 PM"));
+//DateTime fineMod = fine.ToDateTime(TimeOnly.Parse("10:00 PM"));
+//if (cliente.Stipendio / 2 < ammontare / (fineMod.Subtract(inizioMod).Days / 30))
+//    return false;
+
 
 Banca fineco = new Banca("Fineco");
 fineco.AggiungiCliente("sandro", "ficini", "prova", 500);
@@ -29,4 +34,12 @@ fineco.AggiungiCliente("sandro", "ficini", "fcnsdr9327", 500);
 
 
 fineco.StampaListaClienti();
-fineco.ModificaCliente();
+
+Console.WriteLine("Inserisci il codice fiscale dell'utente che vuoi modificare");
+string userInput = Console.ReadLine();
+Console.WriteLine("Inserisci in ordine i dati da modificare (nome, cognome, cod fiscale, stipendio");
+string inputNome = Console.ReadLine();
+string inputCognome = Console.ReadLine();
+string inputCodFiscale = Console.ReadLine();
+int inputStipendio = Convert.ToInt32(Console.ReadLine());
+fineco.ModificaCliente(userInput, inputNome, inputCognome, inputCodFiscale, inputStipendio);
